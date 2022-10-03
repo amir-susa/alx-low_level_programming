@@ -4,14 +4,13 @@
  * @dest: Where you are copying to
  * @src: The string being copied
  * @n: Number of bytes to copy
- *      
  * Return: Pointer to dest
  */
 char *_strncpy(char *dest, char *src, int n)
 {
 	int i, ls;
-	
-	i = ls = 0;
+
+	i = l = 0;
 	while (src[ls] != '\0')
 	{
 		ls++;
