@@ -3,13 +3,12 @@
  * _strcmp - Compare two strings, output int based on comparison
  * @s1: First string to compare
  * @s2: Second string to compare
- *     
  * Return: Int -1 if s1 shorter, +1 if s1 is longer, 0 if equal
  */
 int _strcmp(char *s1, char *s2)
 {
 	int i, l1, l2;
-	
+
 	i = 0;
 	l1 = 0;
 	l2 = 0;
