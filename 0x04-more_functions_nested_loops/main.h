@@ -22,4 +22,3 @@ void FizzBuzz(int a);
 int mul(int, int);
 
 #endif /* MAIN_H */
-
