@@ -7,7 +7,7 @@
  * main - program that performs simple operations
  *
  * @argc: Counts the number of parameters that go into main
- * argv: Pointer of array of pointers containing strings entering main
+ * @argv: Pointer of array of pointers containing strings entering main
  *
  * Return: No element matches -1, if size <=0 -1
  * else index of first element cmp func does not rtrn 0
