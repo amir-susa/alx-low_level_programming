@@ -1,51 +1,68 @@
 #include "lists.h"
-#include "stdio.h"
-
-size_t looped_listint_len(const listint_t *head);
-size_t print_listint_safe(const listint_t *head);
 
 /**
- * looped_listint_len - Counts the number of unique nodes
- * 			in a looped listint_t linked list.
- * @head: A pointer to the head of the listint_t to check.
+ * free_listp - frees a linked list
+ * @head: head of a list.
  *
- * Return: If the list is not looped - 0.
- * 	   otherwise - the number of unique nodes in the list.
+ * Return: no return.
  */
-size_t looped_listint_len(const listint_t *head)
+void free_listp(listp_t **head)
 {
-	const listint_t *tortoise, *hare;
-	size_t nodes = 1;
+	listp_t *temp;
+	listp_t *curr;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
-
-	tortoise = head->next;
-	hare = (head->next)->next;
-
-	while (hare)
+	if (head != NULL)
 	{
-		if (tortoise == hare)
+		curr = *head;
+		while ((temp = curr) != NULL)
 		{
-			tortoise = tortoise->next;
-			while (tortoise != hare)
-			{
-				nodes++;
-				tortoise = tortoise->next;
-				hare = hare->next;
-			}
+			curr = curr->next;
+			free(temp);
+		}
+		*head = NULL;
+	}
+}
 
-			tortoise = tortoise->next;
-			while (tortoise != hare);
-			{
-				nodes++;
-				tortoise = tortoise->next;
-			}
+/**
+ * print_listint_safe - prints a linked list.
+ * @head: head of a list.
+ *
+ * Return: number of nodes in the list.
+ */
+size_t print_listint_safe(const listint_t *head)
+{
+	size_t nnodes = 0;
+	listp_t *hptr, *new, *add;
 
-			return (nodes);
+	hptr = NULL;
+	while (head != NULL)
+	{
+		new = malloc(sizeof(listp_t));
+		if (new == NULL)
+			exit(98);
+
+		new->p = (void *)head;
+		new->next = hptr;
+		hptr = new;
+
+		add = hptr;
+
+		while (add->next != NULL)
+		{
+			add = add->next;
+			if (head == add->p)
+			{
+				printf("-> [%p] %d\n", (void *)head, head->n);
+				free_listp(&hptr);
+				return (nnodes);
+			}
 		}
 
-		tortoise = tortoise->next;
-		hare = (hare->next)->next;
+		printf("[%p] %d\n", (void *)head, head->n);
+		head = head->next;
+		nnodes++;
 	}
+
+	free_listp(&hptr);
+	return (nnodes);
 }

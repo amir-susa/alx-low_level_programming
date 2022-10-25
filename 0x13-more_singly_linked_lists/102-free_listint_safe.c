@@ -39,7 +39,6 @@ size_t free_listint_safe(listint_t **h)
 	while (*h != NULL)
 	{
 		new = malloc(sizeof(listp_t));
-
 		if (new == NULL)
 			exit(98);
 
